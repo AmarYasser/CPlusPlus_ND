@@ -4,6 +4,8 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include "test.cpp" 
+
 using std::cout;
 using std::ifstream;
 using std::istringstream;
@@ -184,11 +186,11 @@ void PrintBoard(const vector<vector<State>> board) {
   }
 }
 
-#include "test.cpp"
+
 
 int main() {
   int init[2]{0, 0};
-  int goal[2]{4, 5};
+  int goal[2]{4, 5};s
   auto board = ReadBoardFile("1.board");
   auto solution = Search(board, init, goal);
   PrintBoard(solution);
