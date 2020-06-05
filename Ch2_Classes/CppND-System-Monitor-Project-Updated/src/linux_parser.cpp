@@ -131,7 +131,7 @@ long LinuxParser::ActiveJiffies(int pid) {
     totalTime = std::stol(utime) + std::stol(stime) + std::stol(cutime) +
                 std::stol(cstime);
   }
-  return (totalTime / (up_time_cpu - up_time_process));
+  return ((totalTime / sysconf(_SC_CLK_TCK) / (up_time_cpu - up_time_process));
 }
 
 // TODO: Read and return the number of active jiffies for the system
