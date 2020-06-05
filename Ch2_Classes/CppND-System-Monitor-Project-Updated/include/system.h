@@ -18,9 +18,12 @@ class System {
   int RunningProcesses();             // TODO: See src/system.cpp
   std::string Kernel();               // TODO: See src/system.cpp
   std::string OperatingSystem();      // TODO: See src/system.cpp
+  // void setPID (int i);
+  static bool compare( Process& p1 ,Process& p2 );
+
 
   // TODO: Define any necessary private members
- private:
+ private: 
   Processor cpu_ = {};
   std::vector<Process> processes_ = {};
 };
