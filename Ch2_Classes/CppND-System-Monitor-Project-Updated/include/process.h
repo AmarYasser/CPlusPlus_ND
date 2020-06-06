@@ -24,7 +24,7 @@ class Process {
   int pid;
   //   std::string uid;
   //   std::string cmd;
-  long cpuUtil;
+  float cpuUtil=0.0;
   //   std::string ram;
   //   long int up_time;
 };

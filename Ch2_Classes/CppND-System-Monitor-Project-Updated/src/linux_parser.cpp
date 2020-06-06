@@ -111,27 +111,21 @@ long LinuxParser::Jiffies() { return 0; }
 // TODO: Read and return the number of active jiffies for a PID
 // REMOVE: [[maybe_unused]] once you define the function
 long LinuxParser::ActiveJiffies(int pid) {
-  long up_time_process = LinuxParser::UpTime(pid);
-  float up_time_cpu = LinuxParser::UpTime();
-  string utime, stime, cutime, cstime;
-  long totalTime;
-  string line, Random;
-  std::ifstream stream(kProcDirectory + std::to_string(pid) + kStatFilename);
-  if (stream.is_open()) {
-    while (std::getline(stream, line)) {
-      std::istringstream linestream(line);
-      for (int i = 0; i < 18; i++) {
-        linestream >> Random;
-        if (i == 13) utime = Random;
-        if (i == 14) stime = Random;
-        if (i == 15) cutime = Random;
-        if (i == 16) cstime = Random;
-      }
+  string line;
+  string key;
+  long value = 0;
+  std::ifstream filestream(kProcDirectory + to_string(pid) + kStatFilename);
+  if (filestream.is_open()) {
+    std::getline(filestream, line);
+    std::istringstream linestream(line);
+    // get the 14th 15th 16th 17th values
+    for (int i = 1; i <= 17 ; i++) {
+      linestream >> key;
+      if (i == 14|| i == 15 || i == 16 || i == 17)
+        value += stol(key);
     }
-    totalTime = std::stol(utime) + std::stol(stime) + std::stol(cutime) +
-                std::stol(cstime);
   }
-  return ((totalTime / sysconf(_SC_CLK_TCK) / (up_time_cpu - up_time_process)));
+  return value;
 }
 
 // TODO: Read and return the number of active jiffies for the system

@@ -16,9 +16,13 @@ int Process::Pid() { return pid; }
 
 // TODO: Return this process's CPU utilization
 long Process::CpuUtilization() { 
-    cpuUtil = LinuxParser::ActiveJiffies(Pid());
-    
-    return LinuxParser::ActiveJiffies(Pid()); }
+  long up_time_process = LinuxParser::UpTime(Pid());
+  long up_time_cpu = LinuxParser::UpTime();
+  long totalTime = LinuxParser::ActiveJiffies(Pid());
+
+  cpuUtil = ((totalTime / sysconf(_SC_CLK_TCK) / (up_time_cpu - up_time_process)));
+  return cpuUtil;
+    }
 
 // TODO: Return the command that generated this process
 string Process::Command() { return LinuxParser::Command(Pid()); }
