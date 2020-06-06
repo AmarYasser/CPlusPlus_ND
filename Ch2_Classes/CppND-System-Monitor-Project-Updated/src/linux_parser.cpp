@@ -138,8 +138,9 @@ long LinuxParser::IdleJiffies() { return 0; }
 float LinuxParser::CpuUtilization() {
   string user, nice, system, idle, iowait, irq, softirq, steal, guest,
       guest_nice;
-  float PrevIdle, Idle, PrevTotal, Total;
-  unsigned int microseconds = 1000000;  // 1 sec
+  float PrevIdle, PrevTotal;
+  // float PrevIdle, Idle, PrevTotal, Total;
+  // unsigned int microseconds = 1000000;  // 1 sec
 
   // read cpu values
   string s, line;
@@ -159,26 +160,26 @@ float LinuxParser::CpuUtilization() {
               std::stof(guest) + std::stof(guest_nice);
 
   // wait another readind 1 sec
-  usleep(microseconds);
+  // usleep(microseconds);
 
-  // read again
-  stream.open(kProcDirectory + kStatFilename);
-  if (stream.is_open()) {
-    // std::cout<< "/proc/stat opened again \n \n";
-    std::getline(stream, line);
-    std::istringstream linestream(line);
-    linestream >> s >> user >> nice >> system >> idle >> iowait >> irq >>
-        softirq >> steal >> guest >> guest_nice;
-  }
-  stream.close();
+  // // read again
+  // stream.open(kProcDirectory + kStatFilename);
+  // if (stream.is_open()) {
+  //   // std::cout<< "/proc/stat opened again \n \n";
+  //   std::getline(stream, line);
+  //   std::istringstream linestream(line);
+  //   linestream >> s >> user >> nice >> system >> idle >> iowait >> irq >>
+  //       softirq >> steal >> guest >> guest_nice;
+  // }
+  // stream.close();
 
-  Idle = std::stof(idle) + std::stof(iowait);
-  Total = Idle + std::stof(user) + std::stof(nice) + std::stof(system) +
-          std::stof(irq) + std::stof(softirq) + std::stof(steal) +
-          std::stof(guest) + std::stof(guest_nice);
+  // Idle = std::stof(idle) + std::stof(iowait);
+  // Total = Idle + std::stof(user) + std::stof(nice) + std::stof(system) +
+  //         std::stof(irq) + std::stof(softirq) + std::stof(steal) +
+  //         std::stof(guest) + std::stof(guest_nice);
 
-  return ((Total - PrevTotal) - (Idle - PrevIdle)) / (Total - PrevTotal);
-  // return (PrevTotal - PrevIdle)/ PrevTotal;
+  // return ((Total - PrevTotal) - (Idle - PrevIdle)) / (Total - PrevTotal);
+  return (PrevTotal - PrevIdle)/ PrevTotal;
 }
 
 // TODO: Read and return the total number of processes
