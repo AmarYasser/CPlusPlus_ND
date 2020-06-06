@@ -29,6 +29,9 @@ vector<Process>& System::Processes() {
   for (int pid : pids) {
     processes_.push_back(Process(pid));
   }
+  for (int i=0; i< sizeof(pids);i++){
+    processes_[i].setCpuUtil();
+  }
   std::sort(processes_.begin(), processes_.end(), compare);
   return processes_;
 }

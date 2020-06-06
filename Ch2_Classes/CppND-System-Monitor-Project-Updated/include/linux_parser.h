@@ -43,7 +43,7 @@ enum CPUStates {
 float CpuUtilization();
 long Jiffies();
 long ActiveJiffies();
-long ActiveJiffies(int pid);
+float ActiveJiffies(int pid);
 long IdleJiffies();
 
 // Processes

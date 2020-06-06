@@ -1,10 +1,12 @@
+#include "process.h"
+
 #include <unistd.h>
+
 #include <cctype>
 #include <sstream>
 #include <string>
 #include <vector>
 
-#include "process.h"
 #include "linux_parser.h"
 
 using std::string;
@@ -15,14 +17,18 @@ using std::vector;
 int Process::Pid() { return pid; }
 
 // TODO: Return this process's CPU utilization
-long Process::CpuUtilization() { 
-  long up_time_process = LinuxParser::UpTime(Pid());
-  long up_time_cpu = LinuxParser::UpTime();
-  long totalTime = LinuxParser::ActiveJiffies(Pid());
+float Process::CpuUtilization() {
+  float up_time_process = LinuxParser::UpTime(Pid());
+  float up_time_cpu = LinuxParser::UpTime();
+  float totalTime = LinuxParser::ActiveJiffies(Pid());
 
-  cpuUtil = ((totalTime / sysconf(_SC_CLK_TCK) / (up_time_cpu - up_time_process)));
+  cpuUtil =
+      ((totalTime / sysconf(_SC_CLK_TCK) / (up_time_cpu - up_time_process)));
   return cpuUtil;
-    }
+}
+
+// Cpu Utilization setter function
+void Process::setCpuUtil() { cpuUtil = CpuUtilization(); }
 
 // TODO: Return the command that generated this process
 string Process::Command() { return LinuxParser::Command(Pid()); }
@@ -38,5 +44,6 @@ long int Process::UpTime() { return LinuxParser::UpTime(Pid()); }
 
 // TODO: Overload the "less than" comparison operator for Process objects
 // REMOVE: [[maybe_unused]] once you define the function
-bool Process::operator<(Process const& a) const { 
-    return ( cpuUtil < a.cpuUtil); }
+bool Process::operator<(Process const& a) const {
+  return (Process::cpuUtil < a.cpuUtil);
+}

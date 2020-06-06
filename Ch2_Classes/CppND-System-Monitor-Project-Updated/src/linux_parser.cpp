@@ -110,10 +110,10 @@ long LinuxParser::Jiffies() { return 0; }
 
 // TODO: Read and return the number of active jiffies for a PID
 // REMOVE: [[maybe_unused]] once you define the function
-long LinuxParser::ActiveJiffies(int pid) {
+float LinuxParser::ActiveJiffies(int pid) {
   string line;
   string key;
-  long value = 0;
+  float value = 0;
   std::ifstream filestream(kProcDirectory + to_string(pid) + kStatFilename);
   if (filestream.is_open()) {
     std::getline(filestream, line);
@@ -122,7 +122,7 @@ long LinuxParser::ActiveJiffies(int pid) {
     for (int i = 1; i <= 17 ; i++) {
       linestream >> key;
       if (i == 14|| i == 15 || i == 16 || i == 17)
-        value += stol(key);
+        value += std::stof(key);
     }
   }
   return value;
