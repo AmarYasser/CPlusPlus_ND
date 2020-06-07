@@ -10,21 +10,21 @@ class Process {
  public:
   // Define the constructor
   Process(int i) : pid(i){};
-  int Pid();                               // TODO: See src/process.cpp
-  std::string User();                      // TODO: See src/process.cpp
-  std::string Command();                   // TODO: See src/process.cpp
-  float CpuUtilization();                  // TODO: See src/process.cpp
-  std::string Ram();                       // TODO: See src/process.cpp
-  long int UpTime();                       // TODO: See src/process.cpp
-  bool operator<(Process const& a) const;  // TODO: See src/process.cpp
+  int Pid();
+  std::string User();
+  std::string Command();
+  float CpuUtilization();
+  std::string Ram();
+  long int UpTime();
+  bool operator<(Process const& a) const;
   void setCpuUtil();
-  
-  // TODO: Declare any necessary private members
+
+  // Declare any necessary private members
  private:
   int pid;
   //   std::string uid;
   //   std::string cmd;
-  float cpuUtil= 0.0;
+  float cpuUtil = 0.0;
   //   std::string ram;
   //   long int up_time;
 };
