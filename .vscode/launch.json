@@ -8,7 +8,7 @@
             "name": "(gdb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/Ch2_Classes/CppND-System-Monitor-Project-Updated/build/monitor",
+            "program": "${workspaceFolder}/Ch3_Memory_Managment/CppND-Memory-Management-Chatbot/build/membot",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",

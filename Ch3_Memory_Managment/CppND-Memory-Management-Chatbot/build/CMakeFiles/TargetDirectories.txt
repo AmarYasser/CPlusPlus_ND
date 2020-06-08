@@ -1,0 +1,3 @@
+/home/ammar/Documents/CPP/Ch3_Memory_Managment/CppND-Memory-Management-Chatbot/build/CMakeFiles/rebuild_cache.dir
+/home/ammar/Documents/CPP/Ch3_Memory_Managment/CppND-Memory-Management-Chatbot/build/CMakeFiles/edit_cache.dir
+/home/ammar/Documents/CPP/Ch3_Memory_Managment/CppND-Memory-Management-Chatbot/build/CMakeFiles/membot.dir
