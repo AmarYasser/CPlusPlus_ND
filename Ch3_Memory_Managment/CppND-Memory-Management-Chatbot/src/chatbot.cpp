@@ -21,7 +21,7 @@ ChatBot::ChatBot()
 ChatBot::ChatBot(std::string filename)
 {
     std::cout << "ChatBot Constructor" << std::endl;
-    
+
     // invalidate data handles
     _chatLogic = nullptr;
     _rootNode = nullptr;
@@ -35,7 +35,7 @@ ChatBot::~ChatBot()
     std::cout << "ChatBot Destructor" << std::endl;
 
     // deallocate heap memory
-    if(_image != NULL) // Attention: wxWidgets used NULL and not nullptr
+    if (_image != NULL) // Attention: wxWidgets used NULL and not nullptr
     {
         delete _image;
         _image = NULL;
@@ -44,7 +44,73 @@ ChatBot::~ChatBot()
 
 //// STUDENT CODE
 ////
+//  copy constructor
+ChatBot::ChatBot(const ChatBot &source)
+{
+    std::cout << "COPYING content of ChatBot " << std::endl;
+    _image = new wxBitmap(*source._image);
 
+    _currentNode = *source._currentNode;
+    _rootNode = *source._rootNode;
+    _chatLogic = *source._chatLogic;
+}
+
+// copy assignment operator
+ChatBot & ::ChatBot operator=(const ChatBot &source)
+{
+    std::cout << "ASSIGNING content of ChatBot " << std::endl;
+    if (this == &source)
+        return *this;
+    if (this->_image != nullptr)
+        delete this->_image;
+
+    _image = new wxBitmap(*source._image);
+
+    this->_currentNode = *source._currentNode;
+    this->_rootNode = *source._rootNode;
+    this->_chatLogic = *source._chatLogic;
+    return *this;
+}
+
+// move constructor
+ChatBot::ChatBot(ChatBot &&source)
+{
+    std::cout << "MOVING  ChatBot " << std::endl;
+
+
+    this._image = source._image;
+    this._currentNode = source._currentNode;
+    this._rootNode = source._rootNode;
+    this._chatLogic = source._chatLogic;
+
+    source._image = nullptr;
+    source._currentNode = nullptr;
+    source._rootNode = nullptr;
+    source._chatLogic = nullptr;
+}
+
+// move assignment operator
+ChatBot & ::ChatBot operator=(ChatBot &&source)
+{
+    std::cout << "MOVING (assign) ChatBot " << std::endl;
+    if (this == &source)
+        return *this;
+    if (this->_image != nullptr)
+        delete this._image;
+
+    this._image = source._image;
+    this._currentNode = source._currentNode;
+    this._rootNode = source._rootNode;
+    this._chatLogic = source._chatLogic;
+
+    source._image = nullptr;
+    source._currentNode = nullptr;
+    source._rootNode = nullptr;
+    source._chatLogic = nullptr;
+
+    return *this;
+}
+}
 ////
 //// EOF STUDENT CODE
 
