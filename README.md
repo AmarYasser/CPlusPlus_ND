@@ -12,3 +12,8 @@ check project [files](https://github.com/AmarYasser/CPlusPlus_ND/tree/master/Ch1
 System Monitor for Linux System 
 
 check project [files](https://github.com/AmarYasser/CPlusPlus_ND/tree/master/Ch2_Classes/CppND-System-Monitor-Project-Updated)
+
+### Project 3
+ChatBot Using the concept of Memory Management and smart pointers
+
+check project [files](https://github.com/AmarYasser/CPlusPlus_ND/tree/master/Ch3_Memory_Managment/CppND-Memory-Management-Chatbot)
