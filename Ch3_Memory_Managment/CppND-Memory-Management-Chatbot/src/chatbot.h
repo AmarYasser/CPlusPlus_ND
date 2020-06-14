@@ -2,6 +2,7 @@
 #define CHATBOT_H_
 
 #include <wx/bitmap.h>
+#include <memory>
 #include <string>
 
 class GraphNode; // forward declaration
@@ -29,8 +30,12 @@ public:
 
     //// STUDENT CODE
     ////
+
+    // copy semantics
     ChatBot(const ChatBot &source); //  copy constructor
     ChatBot &operator=(const ChatBot &source); // copy assignment operator
+    
+    // mve semantics
     ChatBot(ChatBot &&source); // move constructor
     ChatBot &operator=(ChatBot &&source); // move assignment operator
 

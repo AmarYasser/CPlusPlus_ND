@@ -50,13 +50,13 @@ ChatBot::ChatBot(const ChatBot &source)
     std::cout << "COPYING content of ChatBot " << std::endl;
     _image = new wxBitmap(*source._image);
 
-    _currentNode = *source._currentNode;
-    _rootNode = *source._rootNode;
-    _chatLogic = *source._chatLogic;
+    _currentNode = source._currentNode;
+    _rootNode = source._rootNode;
+    _chatLogic = source._chatLogic;
 }
 
 // copy assignment operator
-ChatBot & ::ChatBot operator=(const ChatBot &source)
+ChatBot &ChatBot::operator=(const ChatBot &source)
 {
     std::cout << "ASSIGNING content of ChatBot " << std::endl;
     if (this == &source)
@@ -66,9 +66,9 @@ ChatBot & ::ChatBot operator=(const ChatBot &source)
 
     _image = new wxBitmap(*source._image);
 
-    this->_currentNode = *source._currentNode;
-    this->_rootNode = *source._rootNode;
-    this->_chatLogic = *source._chatLogic;
+    this->_currentNode = source._currentNode;
+    this->_rootNode = source._rootNode;
+    this->_chatLogic = source._chatLogic;
     return *this;
 }
 
@@ -78,10 +78,12 @@ ChatBot::ChatBot(ChatBot &&source)
     std::cout << "MOVING  ChatBot " << std::endl;
 
 
-    this._image = source._image;
-    this._currentNode = source._currentNode;
-    this._rootNode = source._rootNode;
-    this._chatLogic = source._chatLogic;
+    this->_image = source._image;
+    this->_currentNode = source._currentNode;
+    this->_rootNode = source._rootNode;
+    this->_chatLogic = source._chatLogic;
+
+    _chatLogic->SetChatbotHandle(this);
 
     source._image = nullptr;
     source._currentNode = nullptr;
@@ -90,18 +92,20 @@ ChatBot::ChatBot(ChatBot &&source)
 }
 
 // move assignment operator
-ChatBot & ::ChatBot operator=(ChatBot &&source)
+ChatBot &ChatBot::operator=(ChatBot &&source)
 {
     std::cout << "MOVING (assign) ChatBot " << std::endl;
     if (this == &source)
         return *this;
     if (this->_image != nullptr)
-        delete this._image;
+        delete this->_image;
 
-    this._image = source._image;
-    this._currentNode = source._currentNode;
-    this._rootNode = source._rootNode;
-    this._chatLogic = source._chatLogic;
+    this->_image = source._image;
+    this->_currentNode = source._currentNode;
+    this->_rootNode = source._rootNode;
+    this->_chatLogic = source._chatLogic;
+
+    _chatLogic->SetChatbotHandle(this);
 
     source._image = nullptr;
     source._currentNode = nullptr;
@@ -110,7 +114,7 @@ ChatBot & ::ChatBot operator=(ChatBot &&source)
 
     return *this;
 }
-}
+
 ////
 //// EOF STUDENT CODE
 
