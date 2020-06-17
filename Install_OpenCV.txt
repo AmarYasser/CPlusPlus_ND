@@ -10,7 +10,7 @@
 
 	mkdir ~/opencv_build && cd ~/opencv_build
 	git clone https://github.com/opencv/opencv.git
-	git clone https://github.com/opencv/opencv_cont...
+	git clone https://github.com/opencv/opencv_contrib.git
 
 
 3. Create temporary build directory
