@@ -10,3 +10,5 @@ This repository includes all the codes and projects made during Udacity C++ Nano
 
 ### Using [Concurrency](https://github.com/AmarYasser/CPlusPlus_ND/tree/master/Ch4_Concurrency/Concurrent-Traffic-Simulation_Project) to develop a multithead simulation for traficLights
 
+
+### [Solar tracker using OpenCV](https://github.com/AmarYasser/CPlusPlus_ND/tree/master/Ch4_Concurrency/Concurrent-Traffic-Simulation_Project), useful for solar panel systems
